@@ -1,50 +1,19 @@
-# Welcome to your Expo app 👋
+# Welcome to Starwars!
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## How to run the project
 
-## Get started
+1. Clone the repository
+2. Run `yarn` to install the dependencies
+3. Make sure you have an iOS or Android simulator/emulator on your machine.
+4. Run `yarn ios` or `yarn android` to run the project on a simulator/emulator.
 
-1. Install dependencies
+## Notes
 
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- There's probably some leftover dependencies from the automatic project setup that are not actually used.
+- Because of the way RTK Query works, I opted for having a state variable for the current page and fetching based on that as a query parameter instead of using the "next" and "previous" properties of the API response. However, I use the "next" and "previous" properties to determine if there are more pages to fetch and to display the pagination buttons.
+- The search could be improved by adding a debounce to the search input and searching as the user types rather than only searching when the user presses the "Go!" button. Instead, I've added a throttling hook to limit the number of requests to the API to one per second.
+- Loading states are a bit messy. For example, the character list could be rendered while the films are still loading and then you'd have a separate loading state for the films, however due to limited time I opted for just having a single loading state for all the data.
+- I haven't added any tests or comments - but that should of course be part of any "real" project.
+- The "Next" button is still active even when the user has searched for a character. This is a bit confusing as pressing it will do nothing until the search is cleared. Ideally it should be disabled until the search is cleared.
+- Error handling is very basic. If there's an error fetching the data, the user is presented with a generic message and aretry button.
+- Ideally I would have implemented infinite scroll and pull to refresh in the FlatList!
