@@ -17,3 +17,4 @@
 - The "Next" button is still active even when the user has searched for a character. This is a bit confusing as pressing it will do nothing until the search is cleared. Ideally it should be disabled until the search is cleared.
 - Error handling is very basic. If there's an error fetching the data, the user is presented with a generic message and aretry button.
 - Ideally I would have implemented infinite scroll and pull to refresh in the FlatList!
+- I did all of this in a single commit which of course I would never do in a real project. However, this is such a small project that I just decided to go for it.
